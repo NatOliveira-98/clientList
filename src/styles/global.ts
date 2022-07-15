@@ -20,6 +20,11 @@ export const GlobalStyles = createGlobalStyle<{ theme: MyTheme }>`
     transition: all 0.3s;
   }
 
+  a {
+    outline: none;
+    text-decoration: none;
+  }
+
   button {
     cursor: pointer;
   }
@@ -36,7 +41,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: MyTheme }>`
     font-weight: 500;
   }
 
-  button:hover {
-    filter: brightness(0.98);
+  button:hover, a:hover {
+    filter: brightness(1.1);
   }
 `;

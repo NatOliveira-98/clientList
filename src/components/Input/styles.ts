@@ -10,8 +10,10 @@ const Container = styled.div`
 
   box-shadow: 0 4px 1.8rem ${({ theme }) => theme.colors.desaturated_cyan_alpha};
 
+  z-index: 1;
+
   &:focus-within {
-    outline: 2px solid ${({ theme }) => theme.colors.light_gray_3};
+    outline: 2px solid ${({ theme }) => theme.colors.desaturated_cyan};
     outline-offset: 2px;
   }
 

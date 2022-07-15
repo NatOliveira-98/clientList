@@ -1,19 +1,21 @@
 import styled from 'styled-components';
+import { device } from '../../styles/mediaQueries';
 
 const Container = styled.button`
   position: relative;
+
   width: 100%;
-  padding: 3rem 0;
-  padding-left: 5rem;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 2rem;
 
   background-color: ${({ theme }) => theme.colors.light_gray_3};
   border-radius: 8px;
 
-  box-shadow: 0 6px 1.8rem ${({ theme }) => theme.colors.desaturated_cyan_alpha};
+  box-shadow: 0 6px 9px ${({ theme }) => theme.colors.desaturated_cyan_alpha};
 
   &:focus {
     outline: 2px solid ${({ theme }) => theme.colors.desaturated_cyan};
@@ -28,6 +30,8 @@ const Container = styled.button`
     width: 0px;
     height: 100%;
     transform: translateX(-1px);
+    transform: translateY(-40px);
+
     transition: all 0.3s;
 
     background-color: ${({ theme }) => theme.colors.desaturated_cyan};
@@ -37,33 +41,50 @@ const Container = styled.button`
   &:hover::before {
     width: 5px;
     transform: translateX(0px);
-
-    /* border: 4px solid red; */
+    transform: translateY(-40px);
   }
 
   img {
-    width: 7rem;
-    height: 7rem;
+    position: absolute;
+    top: -2.5rem;
+
+    width: 5rem;
+    height: 5rem;
 
     border-radius: 50%;
     object-fit: cover;
   }
 
   .client-info-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
 
-    strong,
-    h2 {
+    strong {
       color: ${({ theme }) => theme.colors.desaturated_cyan};
       font-weight: 700;
     }
 
     h2 {
+      color: ${({ theme }) => theme.colors.very_dark_gray};
+      font-weight: 700;
       font-size: 1.8rem;
+
+      transition: color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.desaturated_cyan};
+      }
     }
+  }
+
+  .line-separator {
+    width: 100%;
+    height: 1px;
+
+    background-color: ${({ theme }) => theme.colors.dark_gray};
   }
 
   .client-contact-container {
@@ -72,12 +93,76 @@ const Container = styled.button`
     align-items: flex-start;
     gap: 5px;
 
+    margin-top: 4px;
+
     span {
       display: flex;
       align-items: center;
       gap: 5px;
 
       color: ${({ theme }) => theme.colors.dark_gray};
+
+      transition: all 0.3s;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
+
+  .type-of-service {
+    color: ${({ theme }) => theme.colors.dark_gray};
+  }
+
+  .icon-go-top-page {
+    display: none;
+  }
+
+  @media ${device.tablet} {
+    padding: 3rem 5rem;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      position: relative;
+      top: auto;
+
+      width: 7rem;
+      height: 7rem;
+    }
+
+    &::before {
+      transform: translateY(0);
+    }
+
+    &:hover::before {
+      transform: translateY(0);
+    }
+
+    .client-info-container {
+      flex: 1;
+    }
+
+    .line-separator {
+      display: none;
+    }
+
+    .client-contact-container {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .icon-go-top-page {
+      display: block;
+      color: ${({ theme }) => theme.colors.desaturated_cyan};
+
+      transition: all 0.3s;
+
+      &:hover {
+        filter: brightness(1.1);
+      }
     }
   }
 `;

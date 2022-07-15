@@ -1,7 +1,8 @@
+import { HeaderBG } from '../../components/HeaderBG';
 import { Input } from '../../components/Input';
 import { Client } from '../../components/Client';
 
-import { Container, HeaderBG, Main } from './styles';
+import { Container, Main } from './styles';
 
 export const Home = () => {
   return (
@@ -10,9 +11,16 @@ export const Home = () => {
 
       <Main>
         <Input />
-        <Client />
-        <Client />
-        <Client />
+
+        <div className="scrollable-area">
+          <Client />
+          <Client />
+          <Client />
+          <Client />
+          <Client />
+          <Client />
+          <Client />
+        </div>
       </Main>
     </Container>
   );
