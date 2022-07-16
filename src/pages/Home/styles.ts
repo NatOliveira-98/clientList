@@ -14,6 +14,20 @@ const Main = styled.main`
   flex-direction: column;
   gap: 2rem;
 
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    div:nth-child(1) {
+      flex: 2;
+    }
+
+    div:nth-child(2) {
+      flex: 1;
+    }
+  }
+
   .scrollable-area {
     display: flex;
     flex-direction: column;

@@ -74,6 +74,11 @@ const Container = styled.button`
 
       transition: color 0.3s;
 
+      span {
+        color: ${({ theme }) => theme.colors.dark_gray};
+        font-size: 1.5rem;
+      }
+
       &:hover {
         color: ${({ theme }) => theme.colors.desaturated_cyan};
       }
@@ -108,10 +113,6 @@ const Container = styled.button`
         filter: brightness(0.8);
       }
     }
-  }
-
-  .type-of-service {
-    color: ${({ theme }) => theme.colors.dark_gray};
   }
 
   .icon-go-top-page {

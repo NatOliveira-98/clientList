@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: MyTheme }>`
     font-size: 62.5%;
   }
 
-  input, button {
+  input, button, select {
     border: none;
     outline: none;
 
@@ -25,7 +25,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: MyTheme }>`
     text-decoration: none;
   }
 
-  button {
+  button, select {
     cursor: pointer;
   }
 
