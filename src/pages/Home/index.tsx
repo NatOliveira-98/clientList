@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+
+import { api } from '../../services/api';
 
 import { HeaderBG } from '../../components/HeaderBG';
 import { Input } from '../../components/Input';
@@ -9,13 +11,42 @@ import { Container, Main } from './styles';
 
 export const Home = () => {
   const [clients, setClients] = useState<[]>([]);
+  const [search, setSearch] = useState<string[]>([]);
+
+  function checkName(name: string, str: string) {
+    const pattern = str.split('').map((x: string) => {
+      return `(?=.*${x})`;
+    });
+    const regex = new RegExp(`${pattern}, g`);
+
+    return name.match(regex);
+  }
+
+  function handleSearch(event: ChangeEvent<HTMLInputElement>) {
+    let value = event.target.value.toLowerCase().substring(0, 3);
+    let result: string[] = [];
+
+    result = clients.filter((client: any) => {
+      const nameSub = client.name.substring(0, 3).toLowerCase();
+      return (
+        client.name.toLowerCase().includes(value) || checkName(nameSub, value)
+      );
+    });
+
+    setSearch(result);
+  }
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users');
-      const data = await res.json();
+      try {
+        const res = await api.get('/users');
 
-      setClients(data);
+        setClients(res.data);
+        setSearch(res.data);
+        //
+      } catch (error) {
+        console.log('There was an error: ', error);
+      }
     }
 
     fetchData();
@@ -27,12 +58,12 @@ export const Home = () => {
 
       <Main>
         <div className="search-container">
-          <Input />
+          <Input onChange={event => handleSearch(event)} />
           <Dropdown />
         </div>
 
         <div className="scrollable-area">
-          {clients.map((client: any, index) => (
+          {search.map((client: any, index) => (
             <Client key={String(index)} data={client} />
           ))}
         </div>

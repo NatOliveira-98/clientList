@@ -1,8 +1,12 @@
+import { InputHTMLAttributes } from 'react';
+
 import { Container } from './styles';
 
-export const Input = () => {
+type InputProps = InputHTMLAttributes<HTMLInputElement>;
+
+export const Input = ({ ...rest }: InputProps) => {
   return (
-    <Container>
+    <Container {...rest}>
       <input type="text" placeholder="Buscar por nome" />
     </Container>
   );
