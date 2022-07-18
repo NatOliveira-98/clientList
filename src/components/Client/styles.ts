@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../styles/mediaQueries';
 
-const Container = styled.button`
+const Container = styled.div`
   position: relative;
 
   width: 100%;
@@ -112,11 +112,11 @@ const Container = styled.button`
       &:hover {
         filter: brightness(0.8);
       }
-    }
-  }
 
-  .icon-go-top-page {
-    display: none;
+      a {
+        color: ${({ theme }) => theme.colors.dark_gray};
+      }
+    }
   }
 
   @media ${device.tablet} {
@@ -153,17 +153,6 @@ const Container = styled.button`
     .client-contact-container {
       flex-direction: row;
       gap: 1rem;
-    }
-
-    .icon-go-top-page {
-      display: block;
-      color: ${({ theme }) => theme.colors.desaturated_cyan};
-
-      transition: all 0.3s;
-
-      &:hover {
-        filter: brightness(1.1);
-      }
     }
   }
 `;

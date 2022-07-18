@@ -1,7 +1,8 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, useEffect } from 'react';
+import mailgo, { MailgoConfig } from 'mailgo';
 
-import { FiPhone, FiMail, FiChevronRight } from 'react-icons/fi';
-import CupcakePlaceholder from '../../assets/cupcake_placeholder.jpg';
+import { FiPhone, FiMail } from 'react-icons/fi';
+import AvatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 import { Container } from './styles';
 
@@ -17,10 +18,18 @@ type ClientProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   };
 };
 
+const mailgoConfig: MailgoConfig = {
+  dark: false,
+};
+
 export const Client = ({ data, ...rest }: ClientProps) => {
+  useEffect(() => {
+    mailgo(mailgoConfig);
+  }, []);
+
   return (
     <Container>
-      <img src={CupcakePlaceholder} alt="Foto de cliente X" />
+      <img src={AvatarPlaceholder} alt={`Foto de cliente ${data.name}`} />
 
       <div className="client-info-container">
         <strong>{data.company.name}</strong>
@@ -33,17 +42,27 @@ export const Client = ({ data, ...rest }: ClientProps) => {
         <div className="client-contact-container">
           <span>
             <FiPhone />
-            {data.phone}
+            <a
+              href={`tel:${data.phone}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {data.phone}
+            </a>
           </span>
 
           <span>
             <FiMail />
-            {data.email}
+            <a
+              href={`mailto:${data.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {data.email}
+            </a>
           </span>
         </div>
       </div>
-
-      <FiChevronRight size={20} className="icon-go-top-page" />
     </Container>
   );
 };

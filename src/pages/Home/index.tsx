@@ -11,8 +11,8 @@ import { Container, Main } from './styles';
 
 export const Home = () => {
   const [clients, setClients] = useState<[]>([]);
-  const [search, setSearch] = useState<string[]>([]);
-  const [filterByCompanyType, setFilterByCompanyType] = useState<string[]>([]);
+  const [search, setSearch] = useState<[]>([]);
+  const [filterByCompanyType, setFilterByCompanyType] = useState<[]>([]);
 
   function checkName(name: string, str: string) {
     const pattern = str.split('').map((x: string) => {
@@ -29,6 +29,7 @@ export const Home = () => {
 
     result = clients.filter((client: any) => {
       const nameSub = client.name.substring(0, 3).toLowerCase();
+      console.log(client);
       return (
         client.name.toLowerCase().includes(value) || checkName(nameSub, value)
       );
@@ -79,9 +80,11 @@ export const Home = () => {
         </div>
 
         <div className="scrollable-area">
-          {search.map((client: any, index) => (
-            <Client key={String(index)} data={client} />
-          ))}
+          {search
+            .sort((a: any, b: any) => a.name.localeCompare(b.name))
+            .map((client: any, index) => (
+              <Client key={String(index)} data={client} />
+            ))}
         </div>
       </Main>
     </Container>

@@ -55,7 +55,7 @@ const Main = styled.main`
     scrollbar-width: auto;
     scrollbar-color: ${({ theme }) => theme.colors.desaturated_cyan} transparent;
 
-    > button:nth-child(1) {
+    > div:nth-child(1) {
       margin-top: 2.1rem;
     }
   }
