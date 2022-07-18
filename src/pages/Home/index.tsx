@@ -12,6 +12,7 @@ import { Container, Main } from './styles';
 export const Home = () => {
   const [clients, setClients] = useState<[]>([]);
   const [search, setSearch] = useState<string[]>([]);
+  const [filterByCompanyType, setFilterByCompanyType] = useState<string[]>([]);
 
   function checkName(name: string, str: string) {
     const pattern = str.split('').map((x: string) => {
@@ -36,6 +37,20 @@ export const Home = () => {
     setSearch(result);
   }
 
+  function handleFilterByCompany(event: ChangeEvent<HTMLSelectElement>) {
+    let value = event.target.value.toLowerCase();
+    let result: string[] = [];
+
+    result = filterByCompanyType.filter((client: any) => {
+      if (value === 'all') {
+        return client.company.bs.toLowerCase();
+      }
+      return client.company.bs.toLowerCase().includes(value);
+    });
+
+    setSearch(result);
+  }
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -43,6 +58,7 @@ export const Home = () => {
 
         setClients(res.data);
         setSearch(res.data);
+        setFilterByCompanyType(res.data);
         //
       } catch (error) {
         console.log('There was an error: ', error);
@@ -59,7 +75,7 @@ export const Home = () => {
       <Main>
         <div className="search-container">
           <Input onChange={event => handleSearch(event)} />
-          <Dropdown />
+          <Dropdown onChange={event => handleFilterByCompany(event)} />
         </div>
 
         <div className="scrollable-area">
