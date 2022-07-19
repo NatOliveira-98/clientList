@@ -1,10 +1,9 @@
-import { unmountComponentAtNode } from 'react-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 
-import { Client } from './index';
+import { Client } from '.';
 
 describe('Client component', () => {
   const clients = [
