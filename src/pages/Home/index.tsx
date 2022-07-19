@@ -7,12 +7,14 @@ import { Input } from '../../components/Input';
 import { Dropdown } from '../../components/Dropdown';
 import { Client } from '../../components/Client';
 
+import AvatarPlaceholder from '../../assets/avatar_placeholder.svg';
+
 import { Container, Main } from './styles';
 
 export const Home = () => {
   const [clients, setClients] = useState<[]>([]);
-  const [search, setSearch] = useState<[]>([]);
-  const [filterByCompanyType, setFilterByCompanyType] = useState<[]>([]);
+  const [search, setSearch] = useState<string[]>([]);
+  const [filterByCompanyType, setFilterByCompanyType] = useState<string[]>([]);
 
   function checkName(name: string, str: string) {
     const pattern = str.split('').map((x: string) => {
@@ -83,7 +85,11 @@ export const Home = () => {
           {search
             .sort((a: any, b: any) => a.name.localeCompare(b.name))
             .map((client: any, index) => (
-              <Client key={String(index)} data={client} />
+              <Client
+                key={String(index)}
+                data={client}
+                avatarPlaceholder={AvatarPlaceholder}
+              />
             ))}
         </div>
       </Main>

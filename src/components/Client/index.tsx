@@ -2,7 +2,6 @@ import { ButtonHTMLAttributes, useEffect } from 'react';
 import mailgo, { MailgoConfig } from 'mailgo';
 
 import { FiPhone, FiMail } from 'react-icons/fi';
-import AvatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 import { Container } from './styles';
 
@@ -16,20 +15,21 @@ type ClientProps = ButtonHTMLAttributes<HTMLButtonElement> & {
       name: string;
     };
   };
+  avatarPlaceholder: string;
 };
 
 const mailgoConfig: MailgoConfig = {
   dark: false,
 };
 
-export const Client = ({ data, ...rest }: ClientProps) => {
+export const Client = ({ data, avatarPlaceholder, ...rest }: ClientProps) => {
   useEffect(() => {
     mailgo(mailgoConfig);
   }, []);
 
   return (
     <Container>
-      <img src={AvatarPlaceholder} alt={`Foto de cliente ${data.name}`} />
+      <img src={avatarPlaceholder} alt={`Foto de cliente ${data.name}`} />
 
       <div className="client-info-container">
         <strong>{data.company.name}</strong>
